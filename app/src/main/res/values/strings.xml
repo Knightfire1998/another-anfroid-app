@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Fiberbasechat</string>
+    <string name="need_a_new_account">NEED A NEW ACCOUNT</string>
+
+    <string name="create_account">Create Account</string>
+    <string name="reg_name">Name</string>
+    <string name="reg_email">email</string>
+    <string name="reg_password">password</string>
+    <string name="slate_view">slate</string>
+    <string name="logout">logout</string>
+    <string name="create_a_new_accout">Create A New Accout</string>
+    <string name="Registering">Registering User</string>
+    <string name="example_email_com">example@email.com</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="login">Login</string>
+    <string name="loginbar">Login</string>
+</resources>

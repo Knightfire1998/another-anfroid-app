@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="WELCOME SCREEN"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="291dp"
+        tools:textSize="25sp" />
+
+
+    <Button
+        android:id="@+id/startregbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="177dp"
+        android:text="@string/need_a_new_account" />
+
+    <Button
+        android:id="@+id/startlogin"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="112dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="ALREADY HAVE  ACCOUNT"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
