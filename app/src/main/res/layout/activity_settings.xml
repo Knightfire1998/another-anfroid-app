@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".activity_settings">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setting_image"
+        android:layout_width="150dp"
+
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/default_avatar1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settingsdisp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="210dp"
+        android:text="@string/display_name"
+        android:textSize="25sp"
+        android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
+
+    <TextView
+        android:id="@+id/settings_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="248dp"
+        android:text="@string/hi_welcome_to_my_profile"
+        android:textSize="15sp"
+        android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
+
+    <Button
+        android:id="@+id/setting_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="change image"
+        android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
+
+    <Button
+        android:id="@+id/setting_status_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="Change status"
+        android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
+</RelativeLayout>
