@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,8 +41,7 @@ public class activity_settings extends AppCompatActivity {
 
     private static final int GALLERY_PICK=1;
 
-    //firebase Storage
-    private StorageReference mimgstorageref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,23 +72,7 @@ public class activity_settings extends AppCompatActivity {
 
 
 
-           mimgbtn.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
 
-
-
-                   Intent gallery_intent = new Intent();
-                   gallery_intent.setType("image/*");
-                   gallery_intent.setAction(Intent.ACTION_GET_CONTENT);
-
-                   startActivityForResult(Intent.createChooser(gallery_intent,"Select Image"),GALLERY_PICK);
-                   CropImage.activity()
-                           .setGuidelines(CropImageView.Guidelines.ON)
-                           .setAspectRatio(1,1)
-                           .start(activity_settings.this);
-               }
-           });
 
 
 
@@ -99,7 +83,7 @@ public class activity_settings extends AppCompatActivity {
             muserDatabade = FirebaseDatabase.getInstance().getReference().child("users").child(current_uid);
 
             //storage reference
-            mimgstorageref = FirebaseStorage.getInstance().getReference();
+            //mimgstorageref = FirebaseStorage.getInstance().getReference();
 
             //to retrieve data from the given path
 
@@ -126,10 +110,7 @@ public class activity_settings extends AppCompatActivity {
           });
 
 
-
     }
-
-
 
 
 }
