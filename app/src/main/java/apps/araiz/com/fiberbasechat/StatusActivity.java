@@ -39,7 +39,10 @@ private FirebaseUser mcurrentUser;
         getSupportActionBar().setTitle("Account Status");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        String Status_value = getIntent().getStringExtra("status_value");
         mstatus = (TextInputLayout) findViewById(R.id.statusinput);
+        mstatus.getEditText().setText(Status_value);
         msavebtn = (Button) findViewById(R.id.status_save_Btn);
 
         mcurrentUser = FirebaseAuth.getInstance().getCurrentUser();

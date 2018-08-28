@@ -1,6 +1,7 @@
 package apps.araiz.com.fiberbasechat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -30,8 +35,13 @@ public class activity_settings extends AppCompatActivity {
     private TextView mdispStatus;
     private CircleImageView mdispImage;
     private Button mstatusbtn;
+    private Button mimgbtn;
 
 
+    private static final int GALLERY_PICK=1;
+
+    //firebase Storage
+    private StorageReference mimgstorageref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +53,43 @@ public class activity_settings extends AppCompatActivity {
 
 
             mstatusbtn = (Button) findViewById(R.id.setting_status_btn);
+            mimgbtn = (Button) findViewById(R.id.setting_image_btn);
+
+
+
             mstatusbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent statusactivity = new Intent(activity_settings.this,StatusActivity.class);
-                    startActivity(statusactivity);
+
+                    String status_value = mdispStatus.getText().toString();
+                    Intent statusintent = new Intent(activity_settings.this,StatusActivity.class);
+                    statusintent.putExtra("status_value",status_value);
+
+                    startActivity(statusintent);
                     finish();
                 }
             });
+
+
+
+           mimgbtn.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+
+
+
+                   Intent gallery_intent = new Intent();
+                   gallery_intent.setType("image/*");
+                   gallery_intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                   startActivityForResult(Intent.createChooser(gallery_intent,"Select Image"),GALLERY_PICK);
+                   CropImage.activity()
+                           .setGuidelines(CropImageView.Guidelines.ON)
+                           .setAspectRatio(1,1)
+                           .start(activity_settings.this);
+               }
+           });
+
 
 
             mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -58,6 +97,9 @@ public class activity_settings extends AppCompatActivity {
 
             //database refrence using uid
             muserDatabade = FirebaseDatabase.getInstance().getReference().child("users").child(current_uid);
+
+            //storage reference
+            //mimgstorageref = FirebaseStorage.getInstance().getReference();
 
             //to retrieve data from the given path
 
@@ -86,4 +128,9 @@ public class activity_settings extends AppCompatActivity {
 
 
     }
+
+
+
+
 }
+

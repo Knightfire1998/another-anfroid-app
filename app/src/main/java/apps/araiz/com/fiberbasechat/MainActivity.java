@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent settingsintent = new Intent(MainActivity.this, activity_settings.class);
             startActivity(settingsintent);
-            finish();
+            //finish();
         }
 
         return  true;
