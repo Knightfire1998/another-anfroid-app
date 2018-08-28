@@ -99,7 +99,7 @@ public class activity_settings extends AppCompatActivity {
             muserDatabade = FirebaseDatabase.getInstance().getReference().child("users").child(current_uid);
 
             //storage reference
-            //mimgstorageref = FirebaseStorage.getInstance().getReference();
+            mimgstorageref = FirebaseStorage.getInstance().getReference();
 
             //to retrieve data from the given path
 
