@@ -5,20 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <include layout="@layout/app_bar_layout" android:id="@+id/main_page_toolbar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="main page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:textSize="24sp" />
 
-    <Button
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/app_bar_layout" android:id="@+id/main_page_toolbar"/>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        </android.support.design.widget.TabLayout>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+        <Button
         android:id="@+id/Slate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,5 +35,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="172dp"
         android:text="@string/slate_view" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_tabPager"
+        android:layout_width="match_parent"
+        android:layout_height="463dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"></android.support.v4.view.ViewPager>
 
 </RelativeLayout>

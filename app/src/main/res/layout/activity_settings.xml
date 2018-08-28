@@ -37,9 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="248dp"
+        android:layout_marginTop="260dp"
         android:text="@string/hi_welcome_to_my_profile"
         android:textSize="15sp"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
@@ -52,7 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="94dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="change image"
+        android:text="@string/change_image"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
 
     <Button
@@ -63,6 +63,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp"
         android:backgroundTint="@android:color/holo_red_light"
-        android:text="Change status"
+        android:text="@string/change_status"
         android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar" />
 </RelativeLayout>

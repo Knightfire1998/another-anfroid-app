@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -26,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout mpass;
     private Button mcreatebtn;
     private Toolbar mtoolbar;
+    private DatabaseReference mDatabase;
 
     //progress bar
     private ProgressDialog mregprogress;
@@ -68,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     mregprogress.setTitle(getString(R.string.Registering));
                     mregprogress.show();
-                    mregprogress.setMessage("PLease wait!");
+                    mregprogress.setMessage("Please wait!");
                     mregprogress.setCanceledOnTouchOutside(false);
                     reg_user(Disp_name, Email, Pass);
 
@@ -85,16 +91,39 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void reg_user(String Disp_name, String Email, String Pass) {
+    private void reg_user(final String Disp_name, String Email, String Pass) {
        //add user
         mAuth.createUserWithEmailAndPassword(Email,Pass).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mregprogress.dismiss();
-                            Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(mainIntent);
-                            finish();
+                            FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = current_user.getUid();
+                            mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+                            //to write in the database
+                            HashMap<String,String> userMap = new HashMap<>();
+                            userMap.put("name",Disp_name);
+                            userMap.put("status","Hi there I'm using Fc");
+                            userMap.put("image","default");
+                            userMap.put("thumb_image","default");
+
+                        mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+
+                                    mregprogress.dismiss();
+                                    Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(mainIntent);
+                                    finish();
+
+                                }
+                            }
+                        });
+
+
                         } else {
                                   mregprogress.hide();
                             Toast.makeText(RegisterActivity.this, "Authentication failed."+

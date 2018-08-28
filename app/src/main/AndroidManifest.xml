@@ -19,12 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity" />
+        <activity android:name="StartActivity" />
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".StartActivity" />
         <activity android:name=".activity_slate" />
-        <activity android:name=".loginactivity"></activity>
+        <activity android:name=".loginactivity" />
+        <activity android:name=".activity_settings" />
+        <activity android:name=".StatusActivity"
+            android:parentActivityName="activity_settings"/>
     </application>
 
 </manifest>

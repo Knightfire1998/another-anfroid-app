@@ -1,6 +1,8 @@
 package apps.araiz.com.fiberbasechat;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mtoolbar;
     private FirebaseAuth mAuth;
     private Button Slateview;
+    private ViewPager mViewPager;
+    private SectionPagerAdapter mSectionPagerAdapter;
+    private TabLayout mTabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setTitle("Firebasechat");
 
+
+        //Tabs
+        mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
+        mSectionPagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mSectionPagerAdapter);
+
+
+        mTabLayout = (TabLayout)  findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
+
+
+
+        //Slate
         Slateview = (Button) findViewById(R.id.Slate);
         Slateview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
             FirebaseAuth.getInstance().signOut();
             sendtostart();
+        }
+        if(item.getItemId() == R.id.main_setting_btn){
+
+            Intent settingsintent = new Intent(MainActivity.this, activity_settings.class);
+            startActivity(settingsintent);
+            finish();
         }
 
         return  true;

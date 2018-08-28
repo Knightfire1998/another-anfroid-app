@@ -14,4 +14,13 @@
     <string name="login_to_your_account">Login to your account</string>
     <string name="login">Login</string>
     <string name="loginbar">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="display_name">Display Name</string>
+    <string name="hi_welcome_to_my_profile">hi welcome to my profile</string>
+    <string name="change_image">change image</string>
+    <string name="change_status">Change status</string>
+    <string name="your_status">Your Status</string>
+    <string name="Savestatus">Save</string>
 </resources>

@@ -1,8 +1,11 @@
 package apps.araiz.com.fiberbasechat;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class activity_settings extends AppCompatActivity {
     private TextView mdispname;
     private TextView mdispStatus;
     private CircleImageView mdispImage;
+    private Button mstatusbtn;
 
 
     @Override
@@ -37,6 +41,16 @@ public class activity_settings extends AppCompatActivity {
             mdispname = (TextView) findViewById(R.id.settingsdisp_name);
             mdispStatus = (TextView) findViewById(R.id.settings_status);
 
+
+            mstatusbtn = (Button) findViewById(R.id.setting_status_btn);
+            mstatusbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent statusactivity = new Intent(activity_settings.this,StatusActivity.class);
+                    startActivity(statusactivity);
+                    finish();
+                }
+            });
 
 
             mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -55,6 +69,11 @@ public class activity_settings extends AppCompatActivity {
                   String status = dataSnapshot.child("status").getValue().toString();
                   String image = dataSnapshot.child("image").getValue().toString();
                   String thumbimage = dataSnapshot.child("thumb_image").getValue().toString();
+
+
+                  mdispname.setText(name);
+                  mdispStatus.setText(status);
+
 
               }
 
