@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".loginactivity">
-<include layout="@layout/app_bar_layout" android:id="@+id/login_app_bar"/>
+
+    <include
+        android:id="@+id/login_app_bar"
+        layout="@layout/app_bar_layout"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="730dp" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/login_email"
