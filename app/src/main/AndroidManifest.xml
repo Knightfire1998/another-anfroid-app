@@ -61,9 +61,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="
-AIzaSyAwpkTJ5XFwEU9xisyjO2MQp3VasopgVGU
-" />
+            android:value="AIzaSyAwpkTJ5XFwEU9xisyjO2MQp3VasopgVGU" />
 
         <activity
             android:name=".ViewPort"
