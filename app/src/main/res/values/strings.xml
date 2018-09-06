@@ -23,4 +23,6 @@
     <string name="change_status">Change status</string>
     <string name="your_status">Your Status</string>
     <string name="Savestatus">Save</string>
+    <string name="title_activity_view_port">Map</string>
+    <string name="viewport">ViewPort</string>
 </resources>

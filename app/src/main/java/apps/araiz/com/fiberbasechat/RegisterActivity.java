@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(Disp_name)||!TextUtils.isEmpty(Email)||!TextUtils.isEmpty(Pass)) {
 
-                    mregprogress.setTitle(getString(R.string.Registering));
+                    mregprogress.setTitle("Registering");
                     mregprogress.show();
                     mregprogress.setMessage("Please wait!");
                     mregprogress.setCanceledOnTouchOutside(false);

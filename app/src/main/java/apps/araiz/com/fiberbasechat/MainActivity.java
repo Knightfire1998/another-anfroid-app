@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private SectionPagerAdapter mSectionPagerAdapter;
     private TabLayout mTabLayout;
+    private Button mviewportbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent Slate_view = new Intent(MainActivity.this,activity_slate.class);
                 startActivity(Slate_view);
+
+            }
+        });
+
+
+        //viewport
+        mviewportbtn= (Button) findViewById(R.id.mviewportbtn);
+        mviewportbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent viewIntent = new Intent(MainActivity.this,ViewPort.class);
+                startActivity(viewIntent);
                 finish();
+
             }
         });
 

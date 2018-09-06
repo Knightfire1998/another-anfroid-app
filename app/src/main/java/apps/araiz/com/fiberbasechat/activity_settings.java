@@ -73,17 +73,12 @@ public class activity_settings extends AppCompatActivity {
 
 
 
-
-
-
             mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
             String current_uid = mCurrentUser.getUid();
 
             //database refrence using uid
             muserDatabade = FirebaseDatabase.getInstance().getReference().child("users").child(current_uid);
 
-            //storage reference
-            //mimgstorageref = FirebaseStorage.getInstance().getReference();
 
             //to retrieve data from the given path
 
@@ -111,7 +106,6 @@ public class activity_settings extends AppCompatActivity {
 
 
     }
-
 
 }
 
