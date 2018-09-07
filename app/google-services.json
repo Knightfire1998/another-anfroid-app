@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "388103771776",
-    "firebase_url": "https://fir-chat-edb29.firebaseio.com",
-    "project_id": "fir-chat-edb29",
-    "storage_bucket": "fir-chat-edb29.appspot.com"
+    "project_number": "620645612672",
+    "firebase_url": "https://fir-chat-41591.firebaseio.com",
+    "project_id": "fir-chat-41591",
+    "storage_bucket": "fir-chat-41591.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:388103771776:android:cc952dd9f6e0b7c5",
+        "mobilesdk_app_id": "1:620645612672:android:cc952dd9f6e0b7c5",
         "android_client_info": {
           "package_name": "apps.araiz.com.fiberbasechat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "388103771776-lm3qc00j4vjuloi889m8arp2cipbpknv.apps.googleusercontent.com",
+          "client_id": "620645612672-2okkqeqruljq58ahem0en5ahv6q0q46n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "apps.araiz.com.fiberbasechat",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "388103771776-u2cckbs81rt68qftaugr2gp8bg0iqe0l.apps.googleusercontent.com",
+          "client_id": "620645612672-rdhguo53a894f4p89f5107b9keu4f0ah.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDXvuuSXjuW3uceOhiYZroTLq60wdBE7cI"
+          "current_key": "AIzaSyBqL-ut41hRWGJDdGLubqDERIvQBzxkgS4"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "388103771776-u2cckbs81rt68qftaugr2gp8bg0iqe0l.apps.googleusercontent.com",
+              "client_id": "620645612672-rdhguo53a894f4p89f5107b9keu4f0ah.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
