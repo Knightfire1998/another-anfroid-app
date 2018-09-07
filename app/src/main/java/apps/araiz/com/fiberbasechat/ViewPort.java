@@ -57,8 +57,7 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //button
-        msearchbtn = (Button) findViewById(R.id.searchbtn);
+
 
 
 

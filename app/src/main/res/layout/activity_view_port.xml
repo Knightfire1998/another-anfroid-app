@@ -8,14 +8,7 @@
     >
 
 
-    <Button
-        android:id="@+id/searchbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search"
-        android:layout_gravity="bottom"
 
-        />
 
 
     <fragment
