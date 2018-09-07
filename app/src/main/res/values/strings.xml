@@ -25,4 +25,5 @@
     <string name="Savestatus">Save</string>
     <string name="title_activity_view_port">Map</string>
     <string name="viewport">ViewPort</string>
+    <string name="search">Search</string>
 </resources>

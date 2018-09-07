@@ -13,6 +13,7 @@ import android.view.View.OnCreateContextMenuListener;
 import android.widget.Button;
 
 
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private SectionPagerAdapter mSectionPagerAdapter;
     private TabLayout mTabLayout;
     private Button mviewportbtn;
+    private Toolbar mactionbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTabLayout = (TabLayout)  findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+
 
 
 
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent viewIntent = new Intent(MainActivity.this,ViewPort.class);
                 startActivity(viewIntent);
+                viewIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
 
             }

@@ -10,9 +10,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.support.v7.widget.Toolbar;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQuery;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,8 +30,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 
 public class ViewPort extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -36,6 +43,10 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
     GoogleApiClient mGoogleApiClent;
     Location mLastLocation;
     LocationRequest mLocationRequest;
+    private Button msearchbtn;
+    FirebaseUser mcurrentuser;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,18 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //button
+        msearchbtn = (Button) findViewById(R.id.searchbtn);
+
+
+
+
+
+
+
     }
+
 
 
     @Override
@@ -79,9 +101,12 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
         LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
+        mcurrentuser = FirebaseAuth.getInstance().getCurrentUser();
 
-        String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("online");
+
+        String user_id = mcurrentuser.getUid();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Location");
 
         GeoFire geoFire = new GeoFire(databaseReference);
         geoFire.setLocation(user_id,new GeoLocation(location.getLatitude(),location.getLongitude()));
@@ -99,8 +124,8 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
     public void onConnected(@Nullable Bundle bundle) {
 
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(100);
-        mLocationRequest.setFastestInterval(100);
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
@@ -130,7 +155,7 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
            //To remove the location when the user comes out of the application
 
         String user_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("online");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Location");
 
         GeoFire geoFire = new GeoFire(databaseReference);
         geoFire.removeLocation(user_id);
