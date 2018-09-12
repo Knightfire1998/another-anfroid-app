@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
+import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,12 +29,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -60,12 +65,7 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
 
 
 
-
-
-
-
-
-    }
+        }
 
 
 
@@ -109,6 +109,11 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
 
         GeoFire geoFire = new GeoFire(databaseReference);
         geoFire.setLocation(user_id,new GeoLocation(location.getLatitude(),location.getLongitude()));
+        if(!friedcircleStarted)
+
+
+            friendcircle();
+
 
 
 
@@ -117,7 +122,6 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
 
 
     }
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -161,4 +165,88 @@ public class ViewPort extends FragmentActivity implements OnMapReadyCallback, Go
 
 
     }
+
+
+
+    //make a list of marker
+    boolean friedcircleStarted =false;
+    List<Marker> markerList = new ArrayList<Marker>();
+
+
+
+    private void friendcircle(){
+        friedcircleStarted = true;
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Location");
+         //reference within database ref for geofie
+        GeoFire geoFire = new GeoFire(databaseReference);
+        //to set a radius arounf=d the current location i.e current user location
+        GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()),10000);
+        //event listener
+        geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+
+               //ieration to look through the marker list
+                for(Marker markerIt : markerList){
+
+                    if(markerIt.getTag().equals(key))
+                        return;
+
+
+                }
+
+                LatLng mfriendlocation = new LatLng(location.latitude,location.longitude);
+
+                Marker  mFriendMarker = mMap.addMarker(new MarkerOptions().position(mfriendlocation));
+                mFriendMarker.setTag(key);
+                //add marker to list
+                markerList.add(mFriendMarker);
+
+            }
+
+            @Override
+            public void onKeyExited(String key) {
+                //to remove the marker
+                for(Marker markerIt : markerList){
+                    if(markerIt.getTag().equals(key))
+                    {
+                        markerIt.remove();
+                        markerList.remove(markerIt);
+                        return;
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onKeyMoved(String key, GeoLocation location)
+            {
+
+                for(Marker markerIt : markerList)
+                {
+                    if(markerIt.getTag().equals(key))
+                    {
+                       markerIt.setPosition(new LatLng(location.latitude,location.longitude));
+
+                    }
+                }
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+
+            }
+
+            @Override
+            public void onGeoQueryError(DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
 }
